@@ -1,8 +1,9 @@
 const fs = require('fs')
 
-function save(item, path){
+function save(item,seedObject, path){
   if (!fs.existsSync(path)) {
-      fs.promises.writeFile(path, JSON.stringify([...therapistSessions,item]));
+      const list = fs.promises.writeFile(path, JSON.stringify([...seedObject,item]));
+      return list
   } else {
       var data = fs.readFileSync(path);  
       var list = (data.length) ? JSON.parse(data): [];
