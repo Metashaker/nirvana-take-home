@@ -1,12 +1,16 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const uuid = require('uuid')
+const fs = require('fs')
+
+const router = express.Router();
 const payments = require('../dataStore/paymentsSeed')
 const save = require('../utils/save')
-const uuid = require('uuid')
 /* GET payments listing. */
+const dataStorePath = __dirname + '/../dataStore/paymentsStore.json'
 router.get('/', function(req, res, next) {
-  //todo: get from file system
-  res.send(payments);
+  const data = fs.readFileSync(dataStorePath); 
+  //todo: memoize the data and add request scoping
+  res.send(data);
 });
 
 router.post('/', async function(req, res, next) {
@@ -24,7 +28,7 @@ router.post('/', async function(req, res, next) {
 
     const list = save({ therapistSessionId, paymentId, patientName, date, totalAmount, paymentData},
       payments, 
-      __dirname + '/../dataStore/paymentsStore.json')
+      dataStorePath)
   
     res.send(list);
     res.status(200)
