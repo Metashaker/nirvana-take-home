@@ -40,7 +40,7 @@ const Layout = ({children}) => {
         <p style={linkStyles}>New session</p>
         <p style={linkStyles}>Previous sessions</p> 
         </div>
-        <div style={{margin: '0 auto'}}>{children}</div>
+        <div>{children}</div>
       <div style={footerStyles} />
     </div>
   )
