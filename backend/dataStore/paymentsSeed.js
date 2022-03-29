@@ -4,7 +4,11 @@ const payments = [
     patientName: "Example Popoca",
     date: new Date().toISOString(),
     totalAmount: 5000, //displayed with cents, so this is really $50.00
-    status: 'pending' //added this field as a bonus
+    paymentData: {
+      cardNumber: '1234392349094',
+      expirationDate: '03/24',
+      cvv: '343'
+    }
   }
 ]
 
