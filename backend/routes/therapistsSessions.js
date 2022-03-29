@@ -14,14 +14,16 @@ router.get('/', async function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   try {
-    const {therapistId, patientName, date, totalAmount, status } = req.body
+    const {therapistId, patientName , totalAmount, status } = req.body
     const therapistSessionId = uuid.v4()
-    if (!therapistId || !patientName || !date || !totalAmount || !status) {
+    const date = new Date().toISOString()
+    //if I had more time, the totalAmount would be based off the sum of the payments that match the therapistSessionId
+    if (!therapistId || !patientName || !totalAmount || !status) {
       res.status(422)
       return new Error('Missing parameters')
       
     }
-    const list = save({therapistId, therapistSessionId, paymentId, patientName, date, totalAmount, status },
+    const list = save({therapistId, therapistSessionId , patientName, date, totalAmount, status },
       therapistSessions, 
       __dirname + '/../dataStore/therapistsSessionsStore.json')
   
@@ -31,9 +33,6 @@ router.post('/', function(req, res, next) {
     console.error(e)
     //logging would happen here
   }
-
-  const list = save({},therapistSessions , __dirname + '/../dataStore/therapistsSessionsStore.json')
-  res.send(list);
 });
 
 module.exports = router;

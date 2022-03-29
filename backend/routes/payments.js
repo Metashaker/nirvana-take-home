@@ -11,11 +11,12 @@ router.get('/', function(req, res, next) {
 
 router.post('/', async function(req, res, next) {
   try {
-    const {therapistSessionId, patientName, date, totalAmount, cardNumber, expirationDate: cardExpirationDate, cvv: cardCVV } = req.body
+    const {therapistSessionId, patientName, totalAmount, cardNumber, expirationDate: cardExpirationDate, cvv: cardCVV } = req.body
     const paymentId = uuid.v4()
+    const date = new Date().toISOString()
     const paymentData = {cardNumber, cardExpirationDate, cardCVV }
 
-    if (!therapistSessionId || !patientName || !date || !totalAmount || !cardNumber || !cardExpirationDate || !cardCVV) {
+    if (!therapistSessionId || !patientName || !totalAmount || !cardNumber || !cardExpirationDate || !cardCVV) {
       res.status(422)
       return new Error('Missing parameters')
       
