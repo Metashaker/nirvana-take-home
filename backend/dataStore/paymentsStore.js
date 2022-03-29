@@ -1,4 +1,4 @@
-export const payments = [
+const payments = [
   {
     therapistSessionId: 1,//fk to therapistsSession table
     patientName: "Example Popoca",
@@ -7,3 +7,5 @@ export const payments = [
     status: 'pending' //added this field as a bonus
   }
 ]
+
+module.exports = payments
