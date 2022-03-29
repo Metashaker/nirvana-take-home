@@ -1,4 +1,4 @@
-export const therapistSessions = [
+const therapistSessions = [
   {
     therapistId: 1, //fk to users table
     therapistSessionId: 1,
@@ -8,3 +8,4 @@ export const therapistSessions = [
     status: 'pending' //added this field as a bonus
   }
 ]
+module.exports = therapistSessions
