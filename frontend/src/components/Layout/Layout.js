@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
   // footer at bottom of layout.
 const layoutStyles = {
   width: '100vw',
-  height: '100vh',
+  minHeight: '100vh',
   overflowX: 'hidden',
   display: 'flex',
   flexDirection: 'column',
@@ -26,7 +26,8 @@ const footerStyles = {
   bottom: 0,
   backgroundColor: 'lightgrey',
   width: '100%',
-  minHeight: '2.5rem'
+  minHeight: '2.5rem',
+  marginTop: '2rem'
 }
 const linkStyles = {
   textDecoration: 'none', 

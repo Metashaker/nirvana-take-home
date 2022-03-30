@@ -18,6 +18,7 @@ router.post('/', async function(req, res, next) {
     const {therapistSessionId, patientName, totalAmount, cardNumber, expirationDate: cardExpirationDate, cvv: cardCVV } = req.body
     const paymentId = uuid.v4()
     const date = new Date().toISOString()
+    const status = 'pending' //call to stripe would go here to charge on an event-driven manner with correct error handling
     const paymentData = {cardNumber, cardExpirationDate, cardCVV }
 
     if (!therapistSessionId || !patientName || !totalAmount || !cardNumber || !cardExpirationDate || !cardCVV) {
@@ -26,7 +27,7 @@ router.post('/', async function(req, res, next) {
       
     }
 
-    const list = save({ therapistSessionId, paymentId, patientName, date, totalAmount, paymentData},
+    const list = save({ therapistSessionId, paymentId, patientName, date, totalAmount, paymentData, status},
       payments, 
       dataStorePath)
   

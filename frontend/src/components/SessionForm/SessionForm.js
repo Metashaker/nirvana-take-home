@@ -6,7 +6,7 @@ const formStyles= {
   flexDirection: 'column',
   height: '50%'
 }
-const SessionForm = () => {
+const SessionForm = ({ onSuccess, onError }) => {
   const { register, handleSubmit, getValues } = useForm();
   const [createdSessionSuccessfully, setcreatedSessionSuccessfully] = useState(false)
 
@@ -22,8 +22,12 @@ const SessionForm = () => {
       await fetch('http://localhost:3000/therapistsSessions', 
       { method: 'POST', 
       body: JSON.stringify({patientName: values.fullName, date: values.date, fee: values.fee}), 
-      headers: { "Content-type" : 'application/json'}}).then(() => setcreatedSessionSuccessfully(true))
+      headers: { "Content-type" : 'application/json'}}).then(() => {
+        onSuccess()
+        setcreatedSessionSuccessfully(true)
+      })
     } catch(e) {
+      onError()
       console.error(e)
     }
   }
