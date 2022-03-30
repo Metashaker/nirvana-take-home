@@ -24,9 +24,9 @@ router.get('/', async function(req, res, next) {
 router.post('/', jsonParser, function(req, res, next) {
   try {
     const {patientName, date, fee } = req.body
-    const therapistSessionId = uuid.v4()
     const status = 'pending'
     const therapistId = 1
+    const therapistSessionId = uuid.v4()
     //in an ideal world therapistId would be added for multi-tenancy
     //if I had more time, the totalAmount would be based off the sum of the payments that match the therapistSessionId
     if (!patientName || !date || !fee) {
