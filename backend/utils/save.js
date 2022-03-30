@@ -10,7 +10,7 @@ function save(item,seedObject, path){
       if (list instanceof Array) list.push(item)
       else list = [item]  
       fs.promises.writeFile(path, JSON.stringify(list));
-      return list
+      return item
   }
 }
 

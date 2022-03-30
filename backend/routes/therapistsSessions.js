@@ -1,7 +1,7 @@
 var express = require('express');
 const uuid = require('uuid')
 const fs = require('fs')
-
+const jsonParser = require('body-parser').json()
 const router = express.Router();
 const save = require('../utils/save')
 const therapistSessions= require('../dataStore/therapistsSessionsSeed');
@@ -14,18 +14,24 @@ router.get('/', async function(req, res, next) {
 });
 
 
-router.post('/', function(req, res, next) {
+router.post('/', jsonParser, function(req, res, next) {
   try {
-    const {therapistId, patientName, totalAmount, status } = req.body
+    console.log(req.body)
+    const {patientName, date, fee } = req.body
+    console.log(patientName, date, fee)
     const therapistSessionId = uuid.v4()
-    const date = new Date().toISOString()
+    const status = 'pending'
+    //in an ideal world therapistId would be added for multi-tenancy
     //if I had more time, the totalAmount would be based off the sum of the payments that match the therapistSessionId
-    if (!therapistId || !patientName || !totalAmount || !status) {
+    if (!patientName || !date || !fee) {
       res.status(422)
       return new Error('Missing parameters')
-      
     }
-    const list = save({therapistId, therapistSessionId , patientName, date, totalAmount, status },
+    if (fee <= 0) {
+      res.status(500)
+      return new Error('Enter a fee greater than 0')
+    }
+    const list = save({therapistSessionId , patientName, date, status, fee },
       therapistSessions, 
       dataStorePath)
   
