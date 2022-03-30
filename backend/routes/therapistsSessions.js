@@ -16,11 +16,10 @@ router.get('/', async function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   try {
-    const {therapistId, patientName, totalAmount, status } = req.body
+    const {therapistId, patientName, totalAmount, status, date } = req.body
     const therapistSessionId = uuid.v4()
-    const date = new Date().toISOString()
     //if I had more time, the totalAmount would be based off the sum of the payments that match the therapistSessionId
-    if (!therapistId || !patientName || !totalAmount || !status) {
+    if (!therapistId || !patientName || !totalAmount || !status || !date) {
       res.status(422)
       return new Error('Missing parameters')
       
