@@ -35,6 +35,7 @@ const SessionsPage = () => {
               <p>fee: {fee}</p>
               <p>date: {date}</p>
               <p>status: {status}</p>
+              <p>Collapsable payment <br /> form would go here</p>
             </CardContent>
           </Card>
         )
