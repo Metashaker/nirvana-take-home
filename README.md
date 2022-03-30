@@ -27,7 +27,8 @@ It has 3 routes:
 2. new session `/new-session`, used for creating new sessions and payments
 3. sessions `/sessions`, used to list all sessions sorted by date
 
-
+### With more time I would had
+1. Added eslint, babel, husky, all packages that guarantee quality code in the delivery pipeline
 
 
 
