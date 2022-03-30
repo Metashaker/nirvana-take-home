@@ -37,8 +37,8 @@ const Layout = ({children}) => {
   return (
     <div style={layoutStyles}>
       <div style={navbarStyles}>
-        <p style={linkStyles}>New session</p>
-        <p style={linkStyles}>Previous sessions</p> 
+        <Link to='/new-session' style={linkStyles}>New session</Link>
+        <Link to='/sessions' style={linkStyles}>Previous sessions</Link> 
         </div>
         <div style={{margin: '0 auto'}}>{children}</div>
       <div style={footerStyles} />
