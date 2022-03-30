@@ -1,4 +1,5 @@
 import { TextField, Button } from '@mui/material'
+import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 const formStyles= {
   display: 'flex',
@@ -7,13 +8,21 @@ const formStyles= {
 }
 const SessionForm = () => {
   const { register, handleSubmit, getValues } = useForm();
+  const [createdSessionSuccessfully, setcreatedSessionSuccessfully] = useState(false)
+
+  useEffect(() => {
+    if (createdSessionSuccessfully) {
+      setTimeout(() => setcreatedSessionSuccessfully(false), 5000)
+    }
+  }, [createdSessionSuccessfully])
+  
   const onSubmit = async () => {
     try {
       const values = getValues()
       await fetch('http://localhost:3000/therapistsSessions', 
       { method: 'POST', 
       body: JSON.stringify({patientName: values.fullName, date: values.date, fee: values.fee}), 
-      headers: { "Content-type" : 'application/json'}})
+      headers: { "Content-type" : 'application/json'}}).then(() => setcreatedSessionSuccessfully(true))
     } catch(e) {
       console.error(e)
     }
@@ -27,6 +36,7 @@ const SessionForm = () => {
       <TextField {...register('fee')} type='number' label='Fee' />
       <TextField {...register('date')} type='date' />
       <Button type='submit' variant='outlined'>Create new session</Button>
+      {createdSessionSuccessfully && <p>Session successfully created</p>}
     </form>
     </>
   )
