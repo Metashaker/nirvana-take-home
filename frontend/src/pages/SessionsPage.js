@@ -1,11 +1,11 @@
 import Layout from '../components/Layout/Layout'
 
-const newSessionRoute = () => {
+const SessionsPage = () => {
   return (
     <Layout>
-      session from here
+      sessions list here
     </Layout>
   )
 }
 
-export default newSessionRoute
+export default SessionsPage

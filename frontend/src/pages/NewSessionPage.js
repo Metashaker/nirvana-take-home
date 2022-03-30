@@ -1,6 +1,6 @@
 import Layout from '../components/Layout/Layout'
 
-const indexRoute = () => {
+const NewSessionPage = () => {
   return (
     <Layout>
       session from here
@@ -8,4 +8,4 @@ const indexRoute = () => {
   )
 }
 
-export default indexRoute
+export default NewSessionPage
