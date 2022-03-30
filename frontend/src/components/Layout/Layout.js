@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const layoutStyles = {
   width: '100vw',
   height: '100vh',
-  overflow: 'hidden',
+  overflowX: 'hidden',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
@@ -15,17 +15,18 @@ const layoutStyles = {
 const navbarStyles = {
   width: '100%',
   backgroundColor: 'lightgrey',
-  height: '4rem',
+  minHeight: '4rem',
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
-  justifyContent: 'space-evenly'
+  justifyContent: 'space-evenly',
+  marginBottom: '2rem'
 }
 const footerStyles = {
   bottom: 0,
   backgroundColor: 'lightgrey',
   width: '100%',
-  height: '2.5rem'
+  minHeight: '2.5rem'
 }
 const linkStyles = {
   textDecoration: 'none', 

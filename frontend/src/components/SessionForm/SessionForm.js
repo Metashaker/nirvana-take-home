@@ -15,6 +15,7 @@ const SessionForm = () => {
       setTimeout(() => setcreatedSessionSuccessfully(false), 5000)
     }
   }, [createdSessionSuccessfully])
+  
   const onSubmit = async () => {
     try {
       const values = getValues()
