@@ -10,11 +10,10 @@ const SessionForm = () => {
   const onSubmit = async () => {
     try {
       const values = getValues()
-      const res = await fetch('http://localhost:3000/therapistsSessions', 
+      await fetch('http://localhost:3000/therapistsSessions', 
       { method: 'POST', 
       body: JSON.stringify({patientName: values.fullName, date: values.date, fee: values.fee}), 
       headers: { "Content-type" : 'application/json'}})
-      console.log(values, res)
     } catch(e) {
       console.error(e)
     }
